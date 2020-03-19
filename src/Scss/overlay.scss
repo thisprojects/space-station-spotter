@@ -1,5 +1,6 @@
 .overlay {
   position: absolute;
+  color: lightgray;
   top: 0px;
   left: 0px;
   z-index: 10;
@@ -8,7 +9,7 @@
   flex-direction: column;
   width: 100%;
   align-items: center;
-  display:flex;
+  display: flex;
   input {
     padding: 10px;
     border-radius: 5px;
@@ -17,23 +18,17 @@
 }
 
 .loading svg {
-  color: lightgray;
   animation-duration: 1s;
   margin-top: 50px;
 }
 
-.overlay{
+.overlay {
   .controls {
     display: flex;
     align-items: center;
     justify-content: center;
   }
   .icon {
-    color: lightgray;
     padding-bottom: 20px;
   }
-}
-
-.location-error {
-  color: lightgray;
 }

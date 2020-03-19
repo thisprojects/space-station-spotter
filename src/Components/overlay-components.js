@@ -22,6 +22,7 @@ const OverLay = ({ overlayState, error, submitLocation, loading }) =>
       <span className="controls">
         <InputAndButton submitLocation={ submitLocation } />
       </span>
+      <p>When can you see the space station? Enter a location to find out!</p>
       <Errors error={ error } />
       <Loading loading={ loading } />
     </div>

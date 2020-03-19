@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
-import {
-  callSpaceStationApi,
-  getResults,
-  key
-} from "./js-functions/js-functions";
-import { OverLay, DisplayResults } from "./components/components.js";
-import "./space-station.css";
+import { getResults } from "./Utils/network-requests";
+import DisplayResults from "./Components/results.js";
+import OverLay from "./Components/overlay-components.js";
+
 
 export class SpaceStationSpotter extends Component {
   constructor(props) {
@@ -14,50 +11,47 @@ export class SpaceStationSpotter extends Component {
     this.state = {
       lat: 52.489471,
       lng: -1.898575,
-      locationError: false,
+      error: false,
       spaceStationResults: null,
-      overlayState: true
+      overlayState: true,
+      loadingState: false
     };
+    this.setOverlayState = this.setOverlayState.bind(this);
+    this.setLocation = this.setLocation.bind(this);
   }
+
+  setOverlayState(state) {
+    this.setState({ overlayState: state });
+  }
+
+  async setLocation(location) {
+    this.setState({ loadingState: true, error: false })
+
+    let locationResult = await getResults(location).catch(() => {
+      this.setState({ error: true, loadingState: false });
+    });
+
+    const { lat, lng, spaceStationResults, address } = locationResult || {};
+    !this.state.error &&
+      this.setState({
+        lat,
+        lng,
+        spaceStationResults,
+        address,
+        loadingState: false,
+        overlayState: false
+      });
+  }
+
   render() {
-    const toggleLoadingAnimation = () => {
-      let x = document.querySelector(".loading");
-      x.classList.toggle("toggle-hide");
-    };
-
-    const setOverlayState = state => {
-      this.setState({ overlayState: state });
-    };
-
-    const setLocation = async source => {
-      toggleLoadingAnimation();
-      let locationResult = await getResults(source).catch(e => { 
-                                                                this.setState({ locationError: true })
-                                                                toggleLoadingAnimation();
-                                                              });
-      // If a valid location is returned, set lat and lng then set call space station api. If location is invalid, display errors.
-      if (locationResult && locationResult.lat && locationResult.lng) {
-        this.setState({
-          lat: locationResult.lat,
-          lng: locationResult.lng,
-          spaceStationResults: await callSpaceStationApi(
-            locationResult.lat,
-            locationResult.lng
-          ).catch(e => e)
-        });
-        setOverlayState(false);
-        toggleLoadingAnimation();
-      } else {
-        this.setState({ locationError: true });
-      }
-    };
-
+    const { lat , lng , spaceStationResults, error, overlayState, loadingState, address } = this.state
     return (
       <div id="page-wrapper">
         <OverLay
-          overlayState={this.state.overlayState}
-          submitLocation={setLocation}
-          locationError={this.state.locationError}
+          overlayState={ overlayState }
+          submitLocation={ this.setLocation }
+          error={ error }
+          loading={ loadingState }
         />
         <div id="map" className="map">
           <Map
@@ -66,21 +60,22 @@ export class SpaceStationSpotter extends Component {
               lng: -1.898575
             }}
             center={{
-              lat: this.state.lat,
-              lng: this.state.lng
+              lat,
+              lng
             }}
-            google={this.props.google}
+            google={ this.props.google }
             zoom={3}
             className={"map"}
           >
             <Marker
-              position={{ lat: this.state.lat, lng: this.state.lng }}
+              position={{ lat, lng }}
               name={"Current location"}
             />
           </Map>
           <DisplayResults
-            reset={setOverlayState}
-            results={this.state.spaceStationResults}
+            reset={ this.setOverlayState }
+            results={ spaceStationResults }
+            address= { address }
           />
         </div>
       </div>
@@ -89,5 +84,5 @@ export class SpaceStationSpotter extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: key
+  apiKey: "AIzaSyCyNv5BOZZfdKO3VDhQCOA3Ufm8tv8rCF8"
 })(SpaceStationSpotter);

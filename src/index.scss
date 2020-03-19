@@ -1,0 +1,65 @@
+@import "./Scss/maps";
+@import "./Scss/overlay";
+@import "./Scss/display-results.scss";
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+#page-wrapper {
+  overflow: none;
+}
+
+h1 {
+  color: lightgray;
+  padding-top: 100px;
+}
+h2 {
+  color: lightgray;
+  margin: 0px;
+}
+
+button {
+  color: black;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: lightgray;
+  margin: 10px;
+}
+
+.dark-theme {
+  background-color: rgba(50, 50, 50, 0.9);
+}
+
+@media only screen and (max-width: 700px) {
+  .results {
+    left: 0px;
+    width: 94%;
+    text-align: center;
+    font-size: 0.8em;
+  }
+
+  .gm-svpc {
+    display: none;
+  }
+
+  .gmnoprint {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 1.7em;
+  }
+}

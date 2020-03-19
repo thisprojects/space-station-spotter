@@ -1,0 +1,39 @@
+.overlay {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  background: rgba(1, 1, 1, 0.9);
+  height: 100%;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  display:flex;
+  input {
+    padding: 10px;
+    border-radius: 5px;
+    background: lightgray;
+  }
+}
+
+.loading svg {
+  color: lightgray;
+  animation-duration: 1s;
+  margin-top: 50px;
+}
+
+.overlay{
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .icon {
+    color: lightgray;
+    padding-bottom: 20px;
+  }
+}
+
+.location-error {
+  color: lightgray;
+}

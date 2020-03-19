@@ -5,7 +5,7 @@ export const locationApiErrorMsg = "Location Error - Location is invalid.";
 export const spaceStationApiError = "Space Station API Error";
 
 export const mockGeolocation = {
-  getCurrentPosition: (callback) => callback({coords: {latitude:1,longitude:1}}),
+  getCurrentPosition: (callback) => callback({coords: {latitude:2,longitude:2}}),
 };
 
 export const mockedDOM = `

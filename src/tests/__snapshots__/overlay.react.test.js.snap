@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Errors Matches Snapshot 1`] = `null`;
+
+exports[`GeoCode Matches Snapshot 1`] = `
+<div
+  className="geocode"
+>
+  <button
+    onClick={[Function]}
+  >
+    Use Current Location
+  </button>
+</div>
+`;
+
+exports[`Location Input and Button Matches Snapshot 1`] = `
+Array [
+  <div
+    className="location-input-wrapper"
+  >
+    <input
+      id="location-input"
+      placeholder="Choose Location"
+      type="text"
+    />
+  </div>,
+  <div
+    className="submit-button"
+  >
+    <button
+      onClick={[Function]}
+    >
+      Submit
+    </button>
+  </div>,
+]
+`;
+
+exports[`Overlay Matches Snapshot 1`] = `null`;

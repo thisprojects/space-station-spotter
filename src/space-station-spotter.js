@@ -84,5 +84,5 @@ export class SpaceStationSpotter extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyCyNv5BOZZfdKO3VDhQCOA3Ufm8tv8rCF8"
+  apiKey: "OBSCURED"
 })(SpaceStationSpotter);

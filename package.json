@@ -1,6 +1,6 @@
 {
   "name": "space-station-spotter",
-  "homepage": "http://www.nathandownes.co.uk/iss-spotter",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
